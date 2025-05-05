@@ -1,0 +1,226 @@
+.card {
+  background-color: var(--primary-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  will-change: transform, box-shadow;
+}
+
+.card-hovered {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-featured {
+  border: 1px solid rgba(194, 107, 87, 0.1);
+}
+
+.card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: var(--accent);
+  color: var(--text-light);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60%; /* 5:3 aspect ratio */
+}
+
+.card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-medium);
+  will-change: transform;
+}
+
+.card-hovered .card-image img {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  padding: var(--space-md);
+}
+
+.card-hovered .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay-content {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+  transform: translateY(20px);
+  transition: transform var(--transition-medium);
+}
+
+.card-hovered .card-overlay-content {
+  transform: translateY(0);
+}
+
+.card-overlay-content .btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.card-overlay-content .btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.card-body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.card-tag {
+  font-size: var(--font-size-xs);
+  background-color: var(--accent-light);
+  color: var(--accent);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.card-tag:hover {
+  background-color: var(--accent);
+  color: var(--text-light);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+  line-height: 1.3;
+}
+
+.card-hovered .card-title {
+  color: var(--accent);
+}
+
+.card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+}
+
+.card-content {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.card-links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: auto;
+}
+
+.card-link {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.card-link span {
+  position: relative;
+}
+
+.card-link span::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width var(--transition-fast);
+}
+
+.card-link:hover span::after {
+  width: 100%;
+}
+
+.card-link svg {
+  transition: transform var(--transition-fast);
+}
+
+.card-link:hover svg {
+  transform: translateX(3px);
+}
+
+.card-link-primary {
+  color: var(--accent);
+}
+
+@media (max-width: 992px) {
+  .card-body {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-title {
+    font-size: var(--font-size-md);
+  }
+
+  .card-image {
+    padding-top: 70%; /* Taller aspect ratio on mobile */
+  }
+}
